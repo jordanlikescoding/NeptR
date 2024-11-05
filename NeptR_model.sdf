@@ -64,7 +64,7 @@
         </model>
 
         <!--Model of legs-->
-        <model name='legs' conical_link='chassis>
+        <model name='legs' conical_link='chassis'>
             <pose relative_to='world'>0 0 0 0 0 0</pose> <!--x y z r p y-->
             
             <link name='left_foot'>
