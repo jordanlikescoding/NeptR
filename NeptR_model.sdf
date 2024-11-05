@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <sdf version="1.10">
-    <world name="car_world">
+
+
+    <!--this section of the code defines the 3D space the objects will lie in-->
+    <world name="robot_world">
         <physics name="1ms" type="ignored">
             <max_step_size>0.001</max_step_size>
             <real_time_factor>1.0</real_time_factor>
@@ -32,6 +35,8 @@
             <direction>-0.5 0.1 -0.9</direction>
         </light>
 
+
+        <!--This section defines the ground of the world-->
         <model name="ground_plane">
             <static>true</static>
             <link name="link">
@@ -57,5 +62,45 @@
                 </visual>
             </link>
         </model>
+
+        <!--Model of legs-->
+        <model name='legs' conical_link='chassis>
+            <pose relative_to='world'>0 0 0 0 0 0</pose> <!--x y z r p y-->
+            
+            <link name='left_foot'>
+                <pose relative_to='__model__'>0 -5 0 0 0 0</model>
+                <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                        <ixx>0.095329</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.381317</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.476646</izz>
+                    </inertia>
+                </inertial>
+                <visual>
+                    <geometry>
+                        <box>
+                            <size>3 2 1</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>0.0 0.0 1.0 1</ambient>
+                        <diffuse>0.0 0.0 1.0 1</diffuse>
+                        <specular>0.0 0.0 1.0 1</specular>
+                    </material>
+                </visual>
+                <collision>
+                    <geometry>
+                        <box>
+                            <size>3 2 1</size>
+                        </box>
+                    </geometry>
+                </collision>
+            </link>
+        </model>
+
     </world>
 </sdf>
