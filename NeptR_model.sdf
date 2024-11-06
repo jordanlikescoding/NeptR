@@ -1,13 +1,14 @@
 <?xml version="1.0" ?>
 <sdf version="1.10">
 
+
     <!--this section of the code defines the 3D space the objects will lie in-->
     <world name="robot_world">
         <physics name="1ms" type="ignored">
             <max_step_size>0.001</max_step_size>
             <real_time_factor>1.0</real_time_factor>
         </physics>
-         <plugin
+        <plugin
             filename="gz-sim-physics-system"
             name="gz::sim::systems::Physics">
         </plugin>
@@ -19,7 +20,7 @@
             filename="gz-sim-scene-broadcaster-system"
             name="gz::sim::systems::SceneBroadcaster">
         </plugin>
-        
+
         <light type="directional" name="sun">
             <cast_shadows>true</cast_shadows>
             <pose>0 0 10 0 0 0</pose>
@@ -33,40 +34,41 @@
             </attenuation>
             <direction>-0.5 0.1 -0.9</direction>
         </light>
-        
-   <!--This section defines the ground of the world-->
+
+
+        <!--This section defines the ground of the world-->
         <model name="ground_plane">
             <static>true</static>
             <link name="link">
                 <collision name="collision">
-                    <geometry>
-                        <plane>
-                            <normal>0 0 1</normal>
-                        </plane>
-                    </geometry>
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    </plane>
+                </geometry>
                 </collision>
                 <visual name="visual">
-                    <geometry>
-                        <plane>
-                            <normal>0 0 1</normal>
-                            <size>100 100</size>
-                        </plane>
-                    </geometry>
-                    <material>
-                        <ambient>0.8 0.8 0.8 1</ambient>
-                        <diffuse>0.8 0.8 0.8 1</diffuse>
-                        <specular>0.8 0.8 0.8 1</specular>
-                    </material>
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    <size>100 100</size>
+                    </plane>
+                </geometry>
+                <material>
+                    <ambient>0.8 0.8 0.8 1</ambient>
+                    <diffuse>0.8 0.8 0.8 1</diffuse>
+                    <specular>0.8 0.8 0.8 1</specular>
+                </material>
                 </visual>
             </link>
         </model>
-        
-           <!--Model of legs-->
-        <model name="neptr">
-            <pose relative_to="world">0 0 0 0 0 0</pose>
+
+        <!--Model of legs-->
+        <model name='neptr' conical_link='chassis'>
+            <pose relative_to='world'>0 0 0 0 0 0</pose> <!--x y z r p y-->
             
-            <link name="right_foot">
-                <pose relative_to="__model__">0 -5 0 0 0 0</pose>
+            <link name='right_foot'>
+                <pose relative_to='__model__'>0 -5 0 0 0 0</model>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -78,7 +80,7 @@
                         <izz>0.476646</izz>
                     </inertia>
                 </inertial>
-                <visual name="right_foot_visual">
+                <visual>
                     <geometry>
                         <box>
                             <size>3 2 1</size>
@@ -90,7 +92,7 @@
                         <specular>0.0 0.0 1.0 1</specular>
                     </material>
                 </visual>
-                <collision name="right_foot_collision">
+                <collision>
                     <geometry>
                         <box>
                             <size>3 2 1</size>
@@ -98,9 +100,9 @@
                     </geometry>
                 </collision>
             </link>
-            
-            <link name="left_foot">
-                <pose relative_to="__model__">0 5 0 0 0 0</pose>
+
+            <link name='left_foot'>
+                <pose relative_to='__model__'>0 5 0 0 0 0</model>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -112,7 +114,7 @@
                         <izz>0.476646</izz>
                     </inertia>
                 </inertial>
-                <visual name="left_foot_visual">
+                <visual>
                     <geometry>
                         <box>
                             <size>3 2 1</size>
@@ -124,7 +126,7 @@
                         <specular>0.0 0.0 1.0 1</specular>
                     </material>
                 </visual>
-                <collision name="left_foot_collision">
+                <collision>
                     <geometry>
                         <box>
                             <size>3 2 1</size>
@@ -132,6 +134,7 @@
                     </geometry>
                 </collision>
             </link>
+
         </model>
     </world>
 </sdf>
