@@ -174,7 +174,7 @@
             <!--implement the rest of the leg-->
 
             <joint name='foot_ankle_joint' type='revolute'>
-                <pose relative_to='foot/>
+                <pose relative_to='foot></pose>
                 <parent>ankle</parent>
                 <child>foot</child>
                  <axis>
