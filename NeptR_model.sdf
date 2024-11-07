@@ -67,8 +67,8 @@
         <model name='neptr' conical_link='chassis'>
             <pose relative_to='world'>0 0 0 0 0 0</pose> <!--x y z r p y-->
             
-            <link name='right_foot'>
-                <pose relative_to='__model__'>0 -5 0 0 0 0</model>
+            <link name='foot'>
+                <pose relative_to='__model__'>0 0 0 0 0 0</model>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -83,7 +83,7 @@
                 <visual>
                     <geometry>
                         <box>
-                            <size>3 2 1</size>
+                            <size>2 1 .5</size>
                         </box>
                     </geometry>
                     <material>
@@ -101,8 +101,44 @@
                 </collision>
             </link>
 
-            <link name='left_foot'>
-                <pose relative_to='__model__'>0 5 0 0 0 0</model>
+            <link name='ankle'>
+                <pose relative_to='foot'> -2.5 0 0 0 -1.5707 0</pose> <!---1.5707 is 90 degrees and turns crlinder on its side-->
+                <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                        <ixx>0.095329</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.381317</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.476646</izz>
+                    </inertia>
+                </inertial>
+                <visual>
+                    <geometry>
+                        <cyllinder>
+                            <radius>0.5</radius>
+                            <length>1.0</length> <!--spans the y lengt of foot-->
+                        </cyllinder>
+                    </geometry>
+                    <material>
+                        <ambient>0.0 0.0 1.0 1</ambient>
+                        <diffuse>0.0 0.0 1.0 1</diffuse>
+                        <specular>0.0 0.0 1.0 1</specular>
+                    </material>
+                </visual>
+                <collision>
+                    <geometry>
+                        <cyllinder>
+                            <radius>0.5</radius>
+                            <length>1.0</length> <!--spans the y lengt of foot-->
+                        </cyllinder>
+                    </geometry>
+                </collision>
+            </link>
+
+            <link name='calf'>
+                <pose relative_to='ankle'>0 1 0 0 0 0</pose>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -117,7 +153,7 @@
                 <visual>
                     <geometry>
                         <box>
-                            <size>3 2 1</size>
+                            <size>2 1 .5</size>
                         </box>
                     </geometry>
                     <material>
@@ -135,6 +171,22 @@
                 </collision>
             </link>
 
+            <!--implement the rest of the leg-->
+
+            <joint name='foot_ankle_joint' type='revolute'>
+                <pose relative_to='foot/>
+                <parent>ankle</parent>
+                <child>foot</child>
+                 <axis>
+                    <xyz expressed_in='__model__'>0 1 0</xyz> <!--can be defined as any frame or even arbitrary frames-->
+                    <limit>
+                        <lower>-1.79769e+308</lower>    <!--negative infinity-->
+                        <upper>1.79769e+308</upper>     <!--positive infinity-->
+                    </limit>
+                </axis>
+            </joint>
+
+            <!--figure out how to join calk to ankle rotation point-->
         </model>
     </world>
 </sdf>
