@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.10">
 
-
     <!--this section of the code defines the 3D space the objects will lie in-->
     <world name="robot_world">
         <physics name="1ms" type="ignored">
@@ -21,6 +20,7 @@
             name="gz::sim::systems::SceneBroadcaster">
         </plugin>
 
+        <!-- lighting settings -->
          <light type="directional" name="sun">
             <cast_shadows>true</cast_shadows>
             <pose>0 0 10 0 0 0</pose>
@@ -42,19 +42,19 @@
                 <collision name="collision">
                     <geometry>
                         <plane>
-                            <normal>0 0 1</normal>
+                            <normal>0 0 0</normal>
                         </plane>
                     </geometry>
                 </collision>
                 <visual name="visual">
                     <geometry>
                         <plane>
-                            <normal>0 0 1</normal>
+                            <normal>0 0 0</normal>
                             <size>100 100</size>
                         </plane>
                     </geometry>
                     <material>
-                        <ambient>0.8 0.8 0.8 1</ambient>
+                        <ambient>0 0 1 1</ambient>
                         <diffuse>0.8 0.8 0.8 1</diffuse>
                         <specular>0.8 0.8 0.8 1</specular>
                     </material>
@@ -64,11 +64,11 @@
 
              <!--Model of legs-->
         <model name="neptr" conical_links='chassis'>
-            <pose relative_to="world">0 0 1.0 0 0 0</pose> <!--x y z r p y-->
+        <pose relative_to="world">0 0 1.0 0 0 0</pose> <!--x y z r p y-->
 
-            <!-- Upper Link -->
+             <!-- Upper Link -->
             <link name="Upper_Link">
-                <pose>0 0 1.0 0.5 0 0</pose> 
+                <pose>0 0 1.0 0.5 0 0</pose> <!-- Positioning of the Upper_Link -->
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -93,56 +93,87 @@
                         <specular>0 0 1 1</specular>
                     </material>
                 </visual>
-                <collision name="Upper_Link_collision">
-                    <geometry>
-                        <cylinder>
-                            <radius>0.1</radius>
-                            <length>1.0</length>
-                        </cylinder>
-                    </geometry>
-                </collision>
-            </link>
 
-            <!-- Lower Link -->
-            <link name="Lower_Link">
-                <pose>0 0 0.5 -0.5 0 0</pose> 
-                <inertial>
-                    <mass>1</mass>
-                    <inertia>
-                        <ixx>0.1</ixx>
-                        <ixy>0</ixy>
-                        <ixz>0</ixz>
-                        <iyy>0.5</iyy>
-                        <iyz>0</iyz>
-                        <izz>0.5</izz>
-                    </inertia>
-                </inertial>
-                <visual name="Lower_Link_visual">
-                    <geometry>
-                        <cylinder>
-                            <radius>0.1</radius>
-                            <length>1.0</length>
-                        </cylinder>
-                    </geometry>
-                    <material>
-                        <ambient>0 1 0 1</ambient>
-                        <diffuse>0 1 0 1</diffuse>
-                        <specular>0 1 0 1</specular>
-                    </material>
-                </visual>
-                <collision name="Lower_Link_collision">
-                    <geometry>
-                        <cylinder>
-                            <radius>0.1</radius>
-                            <length>1.0</length>
-                        </cylinder>
-                    </geometry>
-                </collision>
-            </link>
+    <!-- Sphere representing the joint, placed at the bottom of Upper_Link -->
+    <visual name="Upper_Lower_Link_joint_visual">
+        <pose>0 0 -0.5 0 0 0</pose> <!-- Positioned at the end of Upper_Link -->
+        <geometry>
+            <sphere>
+                <radius>0.1</radius>
+            </sphere>
+        </geometry>
+        <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+            <specular>1 1 0 1</specular>
+        </material>
+    </visual>
+
+    <collision name="Upper_Link_collision">
+        <geometry>
+            <cylinder>
+                <radius>0.1</radius>
+                <length>1.0</length>
+            </cylinder>
+        </geometry>
+    </collision>
+</link>
+
+<!-- Lower Link, positioned to connect to the sphere at the end of Upper_Link -->
+<link name="Lower_Link">
+    <pose>0 0 0.10 -0.5 0 0</pose> <!-- Place Lower_Link relative to the joint position -->
+    <inertial>
+        <mass>1</mass>
+        <inertia>
+            <ixx>0.1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.5</iyy>
+            <iyz>0</iyz>
+            <izz>0.5</izz>
+        </inertia>
+    </inertial>
+    <visual name="Lower_Link_visual">
+        <geometry>
+            <cylinder>
+                <radius>0.1</radius>
+                <length>1.0</length>
+            </cylinder>
+        </geometry>
+        <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+            <specular>0 1 0 1</specular>
+        </material>
+    </visual>
+
+    <visual name="Lower_foot_joint" type="revolute">
+    <pose>0 0 -0.5 0 0 0</pose> 
+     <geometry>
+            <sphere>
+                <radius>0.1</radius>
+            </sphere>
+        </geometry>
+        <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+            <specular>1 1 0 1</specular>
+        </material>
+    </visual>
+
+    <collision name="Lower_Link_collision">
+        <geometry>
+            <cylinder>
+                <radius>0.1</radius>
+                <length>1.0</length>
+            </cylinder>
+        </geometry>
+    </collision>
+</link>
 
             <!-- Foot -->
             <link name="Foot">
-                <pose relative_to="Lower_Link">0 0 -0.5 0 0 0</pose> 
+                <pose>0 -.3 -.4 0 0 0</pose>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -177,31 +208,27 @@
 
             <!-- Joints -->
             <joint name="Upper_Lower_Link_joint" type="revolute">
-                <pose relative_to="Upper_Link">0 0 0 0 0 0</pose>
+                <pose>0 0 -0.5 0 0 0</pose>
                 <parent>Upper_Link</parent>
                 <child>Lower_Link</child>
                 <axis>
                     <xyz>0 0 1</xyz>
                     <limit>
-                        <lower>-3.14159</lower>
-                        <upper>3.14159</upper>
-                        <effort>50</effort>
-                        <velocity>10</velocity>
+                        <lower>-1.5708</lower>
+                        <upper>1.5708</upper>
                     </limit>
                 </axis>
             </joint>
 
             <joint name="Lower_Foot_joint" type="revolute">
-                <pose relative_to="Lower_Link">0 0 -0.5 0 0 0</pose>
+                <pose>0 0 -0.5 0 0 0</pose>
                 <parent>Lower_Link</parent>
                 <child>Foot</child>
                 <axis>
                     <xyz>0 0 1</xyz>
                     <limit>
-                        <lower>-3.14159</lower>
-                        <upper>3.14159</upper>
-                        <effort>50</effort>
-                        <velocity>10</velocity>
+                        <lower>-1.5708</lower>
+                        <upper>1.5708</upper>
                     </limit>
                 </axis>
             </joint>
