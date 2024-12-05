@@ -1,1 +1,1 @@
-11/13/2024 - Uploaded stl file of Micro Netpr model. (Traise)
+12/4/2024 - Uploaded step file of Micro Netpr model. (Traise)
