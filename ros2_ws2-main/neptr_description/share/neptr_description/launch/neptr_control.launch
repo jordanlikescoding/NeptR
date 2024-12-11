@@ -1,0 +1,5 @@
+<launch>
+  <node name="hip_control" pkg="biped_control" type="hip_control.py" output="screen"/>
+  <node name="knee_control" pkg="biped_control" type="knee_control.py" output="screen"/>
+  <node name="ankle_control" pkg="biped_control" type="ankle_control.py" output="screen"/>
+</launch>
