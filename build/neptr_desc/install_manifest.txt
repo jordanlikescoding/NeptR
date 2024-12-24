@@ -1,0 +1,15 @@
+/home/brian/neptr2_ws/install/neptr_desc/share/ament_index/resource_index/package_run_dependencies/neptr_desc
+/home/brian/neptr2_ws/install/neptr_desc/share/ament_index/resource_index/parent_prefix_path/neptr_desc
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/environment/ament_prefix_path.sh
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/environment/ament_prefix_path.dsv
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/environment/path.sh
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/environment/path.dsv
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/local_setup.bash
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/local_setup.sh
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/local_setup.zsh
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/local_setup.dsv
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/package.dsv
+/home/brian/neptr2_ws/install/neptr_desc/share/ament_index/resource_index/packages/neptr_desc
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/cmake/neptr_descConfig.cmake
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/cmake/neptr_descConfig-version.cmake
+/home/brian/neptr2_ws/install/neptr_desc/share/neptr_desc/package.xml
