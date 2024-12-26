@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<sdf version="1.10">
+<sdf version="1.8">
 
     <world name="robot_world">
         <!-- Physics setup -->
@@ -123,7 +123,7 @@
                 <visual name="Lower_Link_visual">
                     <geometry>
                         <mesh>
-                            <uri>model://meshes/larry_stl/knee.stl</uri>
+                            <uri>model://meshes/knee.stl</uri>
                         </mesh>
                     </geometry>
                     <material>
@@ -160,7 +160,7 @@
                 <visual name="Foot_visual">
                     <geometry>
                         <mesh>
-                            <uri>model://neptr_desc/model/meshes/foot.stl</uri>
+                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/foot.stl</uri>
                         </mesh>
                     </geometry>
                     <material>
