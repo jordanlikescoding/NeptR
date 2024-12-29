@@ -30,28 +30,38 @@
                 <collision name="collision">
                     <geometry>
                         <plane>
-                            <normal>0 0 0</normal> 
+                            <normal>0 0 1</normal>
+                            <size>100 100</size>
                         </plane>
                     </geometry>
+                    <surface>
+                        <friction>
+                            <ode>
+                                <mu>1.0</mu>
+                                <mu2>1.0</mu2>
+                            </ode>
+                        </friction>
+                    </surface>
                 </collision>
                 <visual name="visual">
                     <geometry>
                         <plane>
-                            <normal>0 0 0</normal> 
+                            <normal>0 0 1</normal>
                             <size>100 100</size>
                         </plane>
                     </geometry>
                     <material>
-                        <ambient>0 0 1 1</ambient>
-                        <diffuse>0.8 0.8 0.8 1</diffuse>
-                        <specular>0.8 0.8 0.8 1</specular>
+                        <script>
+                            <uri>file://media/materials/scripts/gazebo.material</uri>
+                            <name>Gazebo/White</name>
+                        </script>
                     </material>
                 </visual>
             </link>
         </model>
 
         <!-- Robot model with links and joints -->
-        <model name="neptr" conical_links='chassis'>
+        <model name="neptr">
             <pose relative_to="world">0 0 1.0 0 0 0</pose> <!-- Positioning of the robot -->
         
             <!-- Upper Link -->
@@ -72,13 +82,14 @@
                 <visual name="Upper_Link_visual">
                     <geometry>
                         <mesh>
-                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/thigh_case.stl</uri>
+                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/upper_link.stl</uri>
+                            <scale>1 1 1</scale>
                         </mesh>
                     </geometry>
                     <material>
-                        <ambient>0 0 1 1</ambient>
-                        <diffuse>0 0 1 1</diffuse>
-                        <specular>0 0 1 1</specular>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
                     </material>
                 </visual>
 
@@ -87,7 +98,8 @@
                     <pose>0 0 0 0 0 0</pose>
                     <geometry>
                         <mesh>
-                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/thigh_motor.stl</uri>
+                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/thigh.stl</uri>
+                            <scale> 2 2 2 </scale>
                         </mesh>
                     </geometry>
                     <material>
@@ -109,7 +121,7 @@
 
             <!-- Lower Link -->
             <link name="Lower_Link">
-                <pose>0 0 0 0 0 0</pose> <!-- Position relative to the joint -->
+                <pose>0 0 -0.5 0 0 0</pose> <!-- Position relative to the joint -->
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -124,8 +136,8 @@
                 <visual name="Lower_Link_visual">
                     <geometry>
                         <mesh>
-                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/foot_link.stl</uri>
-                            <scale>1 1 1 </scale>
+                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/lower_link.stl</uri>
+                            <scale>1 1 1</scale>
                         </mesh>
                     </geometry>
                     <material>
@@ -147,7 +159,7 @@
 
             <!-- Foot -->
             <link name="Foot">
-                <pose>0 0 0 0 0 0</pose>
+                <pose>0 0 -1.0 0 0 0</pose>
                 <inertial>
                     <mass>1</mass>
                     <inertia>
@@ -162,70 +174,52 @@
                <visual name="Foot_visual">
                     <geometry>
                         <mesh>
-                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/foot_plate.stl</uri>
+                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/foot.stl</uri>
+                            <scale>1 1 1</scale>
                         </mesh>
                     </geometry>
                     <material>
-                        <ambient>1 0 0 1</ambient>
-                        <diffuse>1 0 0 1</diffuse>
-                        <specular>1 0 0 1</specular>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
                     </material>
                 </visual>
                 <collision name="Foot_collision">
                     <geometry>
-                        <box>
-                            <size>1 1 1</size>
-                        </box>
+                        <cylinder>
+                            <radius>0.1</radius>
+                            <length>1.0</length>
+                        </cylinder>
                     </geometry>
                 </collision>
             </link>
 
             <!-- Joints -->
             <joint name="Upper_Lower_Link_joint" type="revolute">
-                <pose>0 0 -0.5 0 0 0</pose>
+                <pose>0 0 -0.25 0 0 0</pose>
                 <parent>Upper_Link</parent>
                 <child>Lower_Link</child>
                 <axis>
-                    <xyz>0 0 1</xyz>
+                    <xyz>0 1 0</xyz>
                     <limit>
-                        <lower>-1.5708</lower>
-                        <upper>1.5708</upper>
+                        <lower>-1.57</lower>
+                        <upper>1.57</upper>
                     </limit>
                 </axis>
             </joint>
 
-
-             <visual name="Lower_Foot_joint">
-                    <pose>0 0 0 0 0 0</pose>
-                    <geometry>
-                        <mesh>
-                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/foot_motor.stl</uri>
-                        </mesh>
-                    </geometry>
-                    <material>
-                        <ambient>1 1 0 1</ambient>
-                        <diffuse>1 1 0 1</diffuse>
-                        <specular>1 1 0 1</specular>
-                    </material>
-                </visual>
-            <!-- <joint name="Lower_Foot_joint" type="revolute">
-                <pose>0 0 0 0 0 0</pose>
-                <geometry>
-                        <mesh>
-                            <uri>file:///home/brian/neptr2_ws/neptr_desc/model/meshes/foot_motor.stl</uri>
-                        </mesh>
-                </geometry>
+            <joint name="Lower_Foot_joint" type="revolute">
+                <pose>0 0 -0.75 0 0 0</pose>
                 <parent>Lower_Link</parent>
                 <child>Foot</child>
                 <axis>
-                    <xyz>0 0 1</xyz>
+                    <xyz>0 1 0</xyz>
                     <limit>
-                        <lower>-1.5708</lower>
-                        <upper>1.5708</upper>
+                        <lower>-1.57</lower>
+                        <upper>1.57</upper>
                     </limit>
                 </axis>
-            </joint> -->
-
+            </joint>
         </model>
     </world>
 </sdf>
