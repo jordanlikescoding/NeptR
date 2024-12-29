@@ -3,7 +3,8 @@ this is running out of a docker container for humble as it is being developed on
 - list of things to do
 - ~~visually display the mesh~~
     - rescale the models
-    - readjust relative positions
+    ~~ - readjust relative positions~~
+    - optimize leg triangle count
 - move the thing
 - add in a custom world
 - work on nodes
