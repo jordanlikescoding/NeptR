@@ -19,7 +19,6 @@ class LegController(Node):
         
         joint2_msg = Float64()
         joint2_msg.data = -0.5  # Joint 2 position, e.g., bend the leg
-
         # Publish the commands
         self.joint1_pub.publish(joint1_msg)
         self.joint2_pub.publish(joint2_msg)

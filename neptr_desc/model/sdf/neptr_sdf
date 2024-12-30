@@ -8,6 +8,15 @@
             <real_time_factor>1.0</real_time_factor>
         </physics>
 
+        <plugin
+            filename="libign_ros2_control.so"
+            name="ignition::ros2_control::IgnitionRos2ControlPlugin">
+        <ros>
+            <namespace>/robot</namespace>
+        </ros>
+        <robot_param>/robot_description</robot_param>
+        </plugin>
+
         <!-- Lighting settings -->
         <light type="directional" name="sun">
             <cast_shadows>true</cast_shadows>
