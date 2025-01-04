@@ -10,3 +10,6 @@ this is running out of a docker container for humble as it is being developed on
 - work on nodes
 - think about how rviz2 is integrated in
 - think about how moveit2 is integrated in
+
+--------------------
+- create a .rosinstall file to install all required packages and dependencies for a new person when they pull the repo for the first time
