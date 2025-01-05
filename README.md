@@ -1,15 +1,3 @@
-this is running out of a docker container for humble as it is being developed on ubuntu 24.04 which is incompatible with humble
+to view the original repository go here -> https://github.com/jordanlikescoding/NeptR
 
-- list of things to do
-- ~~visually display the mesh~~
-    - rescale the models
-    -  ~~readjust relative positions~~
-    - optimize leg triangle count
-- move the thing
-- add in a custom world
-- work on nodes
-- think about how rviz2 is integrated in
-- think about how moveit2 is integrated in
-
----
-write .rosinstall file 
+this repository is forked to test .rosinstall packages work correctly, test pulling the repository from a new enviroment with no installed packages and any experimental ideas that can be isolated in this repository.
