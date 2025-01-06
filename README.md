@@ -12,4 +12,6 @@ this is running out of a docker container for humble as it is being developed on
 - think about how moveit2 is integrated in
 
 ---
-write .rosinstall file 
+- write .rosinstall file 
+- rework manuals into wiki feature on github
+  
