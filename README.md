@@ -1,4 +1,4 @@
-![Test Gazebo Setup](https://img.shields.io/github/workflow/status/yourusername/yourrepo/Test%20Gazebo%20Setup)
+![Test Gazebo Setup](https://img.shields.io/github/workflow/status/kryzical/https://github.com/kryzical/neptr2_ws/Test%20Gazebo%20Setup)
 ---
 this is running out of a docker container for humble as it is being developed on ubuntu 24.04 which is incompatible with humble
 
