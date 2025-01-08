@@ -1,5 +1,4 @@
-![automated gazebo install](https://img.shields.io/github/actions/workflow/status/kryzical/neptr2_ws/gazebo_install.yml?label=Test%20Status)
-
+![Test Status](https://img.shields.io/github/actions/workflow/status/kryzical/neptr2_ws/gazebo_install.yml?label=Automated%20Gazebo%20Installation)
 ---
 this is running out of a docker container for humble as it is being developed on ubuntu 24.04 which is incompatible with humble
 
